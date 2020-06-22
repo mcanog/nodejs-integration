@@ -1,0 +1,38 @@
+# Basic workflow on GitHub 
+
+#Naming the workflow
+name: CI Pipeline For SonarCloud and NodeJS - npm
+on:
+  push:
+    branches:
+      - master
+      - sonarcloud
+  pull_request:
+    branches:
+      - master
+      - sonarcloud
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    container:
+      image: node
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run npm install and npm test
+        run: |
+          npm install
+          npm test
+      - name: Setup JRE
+        uses: actions/setup-java@v1
+        with:
+          java-version: '13.0.2'
+          java-package: jre
+          architecture: x64
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD }}
+          JAVA_HOME: ''
+
+
