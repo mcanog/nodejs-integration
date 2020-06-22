@@ -1,6 +1,5 @@
-# Basic workflow on GitHub 
+# SonarCloud Workflow
 
-#Naming the workflow
 name: CI Pipeline For SonarCloud and NodeJS - npm
 on:
   push:
