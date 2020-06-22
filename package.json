@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "jest --coverage",
     "start": "node server.js"
   },
   "repository": {
@@ -27,12 +27,23 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "handlebars": "^4.7.3",
+    "jest": "^26.0.1",
     "jquery": "^3.4.1",
     "semantic-ui-calendar": "0.0.8",
     "semantic-ui-css": "^2.4.1",
     "vanilla-router": "^1.2.7"
   },
   "devDependencies": {
+    "jest-sonar-reporter": "^2.0.0",
     "mocha": "^7.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "testResultsProcessor": "jest-sonar-reporter",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ]
   }
 }
